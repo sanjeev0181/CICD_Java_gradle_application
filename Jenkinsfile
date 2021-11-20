@@ -12,7 +12,7 @@ pipeline{
             }
             steps{
                 script{
-                    withSonarQubeEnv(credentialsId: 'sonar-token') {
+                    withSonarQubeEnv(credentialsId: 'sonarqube-token') {
                             sh 'chmod +x gradlew'
                             sh './gradlew sonarqube'
                     }
@@ -34,7 +34,7 @@ pipeline{
                              sh '''
                                 docker build -t 3.92.82.181:8083/springapp:${VERSION} .
                                 docker login -u admin -p $docker_password 3.92.82.181:8083 
-                                docker push  3.92.82.1816:8083/springapp:${VERSION}
+                                docker push  3.92.82.181:8083/springapp:${VERSION}
                                 docker rmi 3.92.82.181:8083/springapp:${VERSION}
                             '''
                     }
